@@ -13,14 +13,15 @@ string encrypt(string plaintext, string key){
     
 
     int keyindex = 0;
+    int textLength = plaintext.length();
 
-    for(int i = 0; i < plaintext.length(); i++ ){
+    for(int i = 0; i < textLength; i++ ){
         char currentChar = plaintext[i];
         
         if(isalpha(currentChar)){ // kiểm tra có phải là chữ cái không
             char offset = isupper(currentChar) ? 'A' : 'a';
 
-            currentChar = (char)(((currentChar - offset + key[keyindex] - 'A') % 26 ) + offset); // đưa currentChar và key[keyindex] về cùng một phạm vi (0 - 25);
+            currentChar = (char)(((currentChar - offset + key[keyindex] - 'A') % 26 ) + offset);// đưa currentChar và key[keyindex] về cùng một phạm vi (0 - 25);
             keyindex = ( keyindex + 1 ) % key.length(); // duyệt từ kí tự key rồi lặp lại
         }
         cipherText += currentChar;
@@ -36,15 +37,16 @@ string decrypt(string ciphertext, string key){
     }
     
     int keyindex = 0;
-    
-    for(int i = 0; i < ciphertext.length(); i++)
+    int textLength = ciphertext.length();
+
+    for(int i = 0; i < textLength; i++)
     {
         char currentChar = ciphertext[i];
 
         if(isalpha(currentChar)){
             char offset = isupper(currentChar) ? 'A' : 'a';
 
-            currentChar = ((((currentChar - offset - key[keyindex] + 'A') + 26 ) % 26 ) + offset); // đưa currentChar và key[keyindex] về cùng một phạm vi (0 - 25);
+            currentChar = ((((currentChar - offset - key[keyindex] + 'A') + 26 ) % 26 ) + offset);
             keyindex = (keyindex + 1) % key.length();
         }
         plaintext += currentChar;
@@ -61,10 +63,10 @@ int main(){
     cin >> key;
 
     string encryptedText = encrypt(plaintext, key); //gọi hàm mã hóa dữ liệu
-    cout << "Văn bản đã mã hóa: " << encryptedText << endl;
+    cout << "Encrypted text: " << encryptedText << endl;
 
     string decryptedText = decrypt(encryptedText, key); //gọi hàm giải mã dữ liệu
-    cout << "Văn bản sau khi giải mã: " << decryptedText << endl;
+    cout << "Decrypted text: " << decryptedText << endl;
 
     return 0;
 }
