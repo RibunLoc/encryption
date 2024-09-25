@@ -55,7 +55,7 @@ string decrypt(string ciphertext, string key){
 int main(){
     cout << "Plaintext: "; // nhập plaintext;
     string plaintext;
-    cin >> plaintext;
+    std::getline(std::cin,plaintext);
     cout << "Key: "; // nhập khóa key;
     string key;
     cin >> key;
