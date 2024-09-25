@@ -6,12 +6,11 @@ using namespace std;
 
 string encrypt(string plaintext, string key){
     string cipherText = "";
-    // lặp qua các kí tự key để in hoa
-    for(char& c : key){ 
-        c = std::toupper(c);
-    }
-    
 
+    int keylength = key.length();
+    for(int i = 0;i < keylength; i++ ) // in hoa chuỗi key
+        key[i] = toupper(key[i]);
+    
     int keyindex = 0;
     int textLength = plaintext.length();
 
@@ -32,9 +31,9 @@ string encrypt(string plaintext, string key){
 string decrypt(string ciphertext, string key){
     string plaintext = "";
 
-    for(char& c : key){ // in hoa chuỗi key
-        c = std::toupper(c);
-    }
+    int keylength = key.length();
+    for(int i = 0;i < keylength; i++ ) // in hoa chuỗi key
+        key[i] = toupper(key[i]);
     
     int keyindex = 0;
     int textLength = ciphertext.length();
